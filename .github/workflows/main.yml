@@ -1,0 +1,17 @@
+name: Publish 2
+
+on:
+  - workflow_dispatch
+
+jobs:
+  build_dotnet:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: dotnet publish -c Release -r win-x64 --self-contained
+    - uses: actions/upload-artifact@v3
+      with:
+        name: vrcft
+        path: VRCFaceTracking/VRCFaceTracking/bin/win10-x64/publish/win10-x64/
